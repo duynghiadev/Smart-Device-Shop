@@ -1,8 +1,6 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 
-const Ratings = () =>{
-    return(
-        <div>Ratings</div>
-    )
-}
-export default memo(Ratings)
+const Ratings = () => {
+  return <div>Ratings</div>;
+};
+export default memo(Ratings);

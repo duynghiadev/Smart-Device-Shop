@@ -40,30 +40,30 @@ export const apiDeleteProduct = (pid) =>
     method: "delete",
   });
 
-  export const apiAddVarriant = (data,pid) =>
+export const apiAddVarriant = (data, pid) =>
   axios({
     url: "/product/varriant/" + pid,
     method: "put",
-    data
+    data,
   });
 
-  export const apiCreateOrder = (data) =>
+export const apiCreateOrder = (data) =>
   axios({
     url: "/order/",
     method: "post",
-    data
+    data,
   });
 
-  export const apiGetOrders = (params) =>
+export const apiGetOrders = (params) =>
   axios({
     url: "/order/admin",
     method: "get",
-    params
+    params,
   });
 
-  export const apiGetUserOrders = (params) =>
+export const apiGetUserOrders = (params) =>
   axios({
     url: "/order/",
     method: "get",
-    params
+    params,
   });

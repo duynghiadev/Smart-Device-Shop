@@ -90,11 +90,11 @@ export const productInfoTabs = [
     content: `BẢO ĐẢM THÔNG TIN
         LIMITED WARRANTIES
         Limited Warranties are non-transferable. The following Limited Warranties are given to the original retail purchaser of the following Ashley Furniture Industries, Inc.Products:
-        
+
         Frames Used In Upholstered and Leather Products
         Limited Lifetime Warranty
         A Limited Lifetime Warranty applies to all frames used in sofas, couches, love seats, upholstered chairs, ottomans, sectionals, and sleepers. Ashley Furniture Industries,Inc. warrants these components to you, the original retail purchaser, to be free from material manufacturing defects.
-        
+
         `,
   },
 
@@ -252,7 +252,6 @@ export const adminSidebar = [
   },
 ];
 
-
 export const memberSidebar = [
   {
     id: 1,
@@ -313,14 +312,12 @@ export const blockStatus = [
 
 export const statusOrders = [
   {
-    label: 'Cancelled',
-    value: 'Cancelled'
+    label: "Cancelled",
+    value: "Cancelled",
   },
 
   {
-    label: 'Succeed',
-    value: 'Succeed'
+    label: "Succeed",
+    value: "Succeed",
   },
-
-
-]
+];

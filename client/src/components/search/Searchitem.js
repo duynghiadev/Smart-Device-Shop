@@ -2,9 +2,14 @@ import React, { memo, useEffect, useState } from "react";
 import icons from "../../ultils/icons";
 import { colors } from "../../ultils/contants";
 import { apiGetProducts } from "../../apis";
-import { createSearchParams, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import path from "../../ultils/path";
-import useDebounce from '../../hooks/useDebounce'
+import useDebounce from "../../hooks/useDebounce";
 const { AiOutlineDown } = icons;
 const SearchItem = ({
   name,
@@ -15,7 +20,7 @@ const SearchItem = ({
   const navigate = useNavigate();
   const [selected, setSelected] = useState([]);
   const { category } = useParams();
-  const [params] = useSearchParams()
+  const [params] = useSearchParams();
   const [price, setPrice] = useState({
     from: "",
     to: "",
@@ -33,48 +38,47 @@ const SearchItem = ({
     if (response?.success) setBestPrice(response.products[0]?.price);
   };
 
-
   useEffect(() => {
-    let param = []
-    for (let i of params.entries()) param.push(i)
-    const queries = {}
-    for (let i of params) queries[i[0]] = i[1]
+    let param = [];
+    for (let i of params.entries()) param.push(i);
+    const queries = {};
+    for (let i of params) queries[i[0]] = i[1];
     if (selected.length > 0) {
-      queries.color = selected.join(','); 
-      queries.page = 1
-    } else delete queries.color 
+      queries.color = selected.join(",");
+      queries.page = 1;
+    } else delete queries.color;
     navigate({
       pathname: `/${category}`,
       search: createSearchParams(queries).toString(),
-    })
-    
+    });
   }, [selected]);
   useEffect(() => {
     if (type === "input") fetchBestPriceProduct();
   }, [type]);
 
-  useEffect(()=>{
-    if(price.from && price.to && price.from > price.to) alert('From price cannot be greater than To price')
-  },[price])
+  useEffect(() => {
+    if (price.from && price.to && price.from > price.to)
+      alert("From price cannot be greater than To price");
+  }, [price]);
 
-  const debouncePriceFrom = useDebounce(price.from, 500)
-  const debouncePriceTo = useDebounce(price.to, 500)
-  useEffect (()=>{
-    let param = []
-    for (let i of params.entries()) param.push(i)
-    const queries = {}
-    for (let i of params) queries[i[0]] = i[1]
-    
-    if(Number (price.from)> 0) queries.from = price.from
-    else delete queries.from
-    if(Number (price.to) > 0) queries.to = price.to
-    else delete queries.to
-    queries.page = 1
+  const debouncePriceFrom = useDebounce(price.from, 500);
+  const debouncePriceTo = useDebounce(price.to, 500);
+  useEffect(() => {
+    let param = [];
+    for (let i of params.entries()) param.push(i);
+    const queries = {};
+    for (let i of params) queries[i[0]] = i[1];
+
+    if (Number(price.from) > 0) queries.from = price.from;
+    else delete queries.from;
+    if (Number(price.to) > 0) queries.to = price.to;
+    else delete queries.to;
+    queries.page = 1;
     navigate({
       pathname: `/${category}`,
       search: createSearchParams(queries).toString(),
-    })
-  },[debouncePriceFrom,debouncePriceTo])
+    });
+  }, [debouncePriceFrom, debouncePriceTo]);
 
   return (
     <div
@@ -93,7 +97,7 @@ const SearchItem = ({
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelected([]);
-                    changeActiveFilter(null)
+                    changeActiveFilter(null);
                   }}
                   className="cursor-pointer underline hover:text-main"
                 >
@@ -133,8 +137,8 @@ const SearchItem = ({
                 <span
                   onClick={(e) => {
                     e.stopPropagation();
-                    setPrice({from: '' , to: ''});
-                    changeActiveFilter(null)
+                    setPrice({ from: "", to: "" });
+                    changeActiveFilter(null);
                   }}
                   className="cursor-pointer underline hover:text-main"
                 >

@@ -11,10 +11,11 @@ const Wishlist = () => {
       </header>
       <div className="p-4 w-full flex flex-wrap gap-4">
         {current?.wishlist?.map((el) => (
-          <div className="bg-white rounded-md  w-[300px] drop-shadow flex flex-col py-3 gap-3" key={el._id}>
-            <Product pid={el._id} className= 'bg-white ' productData={el}
-             />
-
+          <div
+            className="bg-white rounded-md  w-[300px] drop-shadow flex flex-col py-3 gap-3"
+            key={el._id}
+          >
+            <Product pid={el._id} className="bg-white " productData={el} />
           </div>
         ))}
       </div>

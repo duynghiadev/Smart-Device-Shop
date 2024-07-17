@@ -11,23 +11,26 @@ import path from "ultils/path";
 const DetailCart = ({ location, navigate }) => {
   const { currentCart, current } = useSelector((state) => state.user);
   const handleSubmit = () => {
-    if(!current?.address) return Swal.fire({
-      icon: 'info',
-      title: 'Almost',
-      text: 'Please update your address before checkout',
-      showCancelButton: true,
-      showConfirmButton: true,
-      confirmButtonText: 'Go update',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if(result.isConfirmed) navigate({
-        pathname: `/${path.MEMBER}/${path.PERSONAL}`,
-        search: createSearchParams({redirect: location.pathname}).toString()
-      })
-    })
-    else window.open(`/${path.CHECKOUT}`, '_blank')
-    
-  }
+    if (!current?.address)
+      return Swal.fire({
+        icon: "info",
+        title: "Almost",
+        text: "Please update your address before checkout",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: "Go update",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed)
+          navigate({
+            pathname: `/${path.MEMBER}/${path.PERSONAL}`,
+            search: createSearchParams({
+              redirect: location.pathname,
+            }).toString(),
+          });
+      });
+    else window.open(`/${path.CHECKOUT}`, "_blank");
+  };
   return (
     <div className="w-full">
       <div className="h-[81px]  bg-gray-100 flex justify-center items-center">

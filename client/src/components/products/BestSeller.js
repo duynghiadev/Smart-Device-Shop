@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react";
 import { apiGetProducts } from "../../apis/product";
 import { Product, CustomSlider } from "..";
-import {getNewProducts} from '../../store/products/asynsActions'
+import { getNewProducts } from "../../store/products/asynsActions";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 const tabs = [
@@ -15,15 +15,14 @@ const BestSeller = () => {
   const [activedTab, setActivedTab] = useState(1);
   const [products, setProducts] = useState(null);
   const dispatch = useDispatch();
-  const {newProducts} = useSelector(state => state.products)
-  const {isShowModal} = useSelector(state => state.app)
+  const { newProducts } = useSelector((state) => state.products);
+  const { isShowModal } = useSelector((state) => state.app);
   const fetchProducts = async () => {
-    const response = await apiGetProducts({sort: '-sold'})
+    const response = await apiGetProducts({ sort: "-sold" });
     if (response?.success) {
       setBestSellers(response.products);
       setProducts(response.products);
     }
-
   };
   useEffect(() => {
     fetchProducts();
@@ -34,7 +33,7 @@ const BestSeller = () => {
     if (activedTab === 2) setProducts(newProducts);
   }, [activedTab]);
   return (
-    <div className={clsx(isShowModal ? 'hidden' : '')}>
+    <div className={clsx(isShowModal ? "hidden" : "")}>
       <div className="flex text-[20px] ml-[-32px]">
         {tabs.map((el) => (
           <span

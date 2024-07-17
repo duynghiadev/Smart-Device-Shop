@@ -79,7 +79,6 @@ const ProductInfomation = ({
       </div>
 
       <div className="flex flex-col py-8 w-main">
-
         <div className="flex border">
           <div className="flex-4 flex-col flex items-center  justify-center">
             <span className="font-semibold text-3xl">{`${totalRatings}/5`}</span>

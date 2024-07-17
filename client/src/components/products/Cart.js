@@ -79,12 +79,17 @@ const Cart = ({ dispatch, navigate }) => {
           </span>
         </div>
         <span className="text-centetext-white italic text-xs">
-        Vận chuyển, thuế và giảm giá được tính khi thanh toán.
+          Vận chuyển, thuế và giảm giá được tính khi thanh toán.
         </span>
-        <Button handleOnClick={() => {
-          dispatch(showCart())
-          navigate(`/${path.MEMBER}/${path.DETAIL_CART}`)
-        }} style="rounded-md w-full bg-main py-3">Vào giỏ hàng</Button>
+        <Button
+          handleOnClick={() => {
+            dispatch(showCart());
+            navigate(`/${path.MEMBER}/${path.DETAIL_CART}`);
+          }}
+          style="rounded-md w-full bg-main py-3"
+        >
+          Vào giỏ hàng
+        </Button>
       </div>
     </div>
   );

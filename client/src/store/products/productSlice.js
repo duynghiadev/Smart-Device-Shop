@@ -6,14 +6,13 @@ export const productSlice = createSlice({
   name: "product",
   initialState: {
     newProducts: null,
-    errorMessage: '',
-    dealDaily: BsNutFill
-    
+    errorMessage: "",
+    dealDaily: BsNutFill,
   },
   reducers: {
     getDealDaily: (state, action) => {
-      state.dealDaily = action.payload
-    }
+      state.dealDaily = action.payload;
+    },
   },
   // Code logic xử lý async action
   extraReducers: (builder) => {
@@ -33,5 +32,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const {getDealDaily } = productSlice.actions;
+export const { getDealDaily } = productSlice.actions;
 export default productSlice.reducer;

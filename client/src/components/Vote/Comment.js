@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 import avatar from "assets/avatarDefault.jpg";
 import moment from "moment";
 import { renderStarFromNumber } from "../../ultils/helpers";
@@ -36,8 +36,8 @@ const Comment = ({
           </span>
 
           <span className="flex gap-1">
-          <span className="font-semibold">Phản hồi:</span>
-          <span className="flex items-center gap-1">{comment}</span>
+            <span className="font-semibold">Phản hồi:</span>
+            <span className="flex items-center gap-1">{comment}</span>
           </span>
         </div>
       </div>

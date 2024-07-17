@@ -34,7 +34,6 @@ export const userSlice = createSlice({
           return { ...el, quantity };
         } else return el;
       });
-     
     },
   },
 

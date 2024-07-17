@@ -76,7 +76,6 @@ const History = ({ navigate, location }) => {
             <th className="text-center py-2">Tổng tiền</th>
             <th className="text-center py-2">Trạng thái</th>
             <th className="text-center py-2">Ngày tạo</th>
-            
           </tr>
         </thead>
 
@@ -92,7 +91,10 @@ const History = ({ navigate, location }) => {
               <td className="text-center max-w-[300px] py-2">
                 <span className="grid grid-cols-4 gap-4">
                   {el.products?.map((item) => (
-                    <span className="flex col-span-1 items-center gap-2" key={item._id}>
+                    <span
+                      className="flex col-span-1 items-center gap-2"
+                      key={item._id}
+                    >
                       {/* {` • ${item.title} - ${item.color}`} */}
                       <img
                         src={item.thumbnail}
@@ -100,14 +102,10 @@ const History = ({ navigate, location }) => {
                         className="w-8 h-8 rounded-md object-cover"
                       />
                       <span className="flex flex-col">
-                        <span className="text-main text-sm">
-                          {item.title}
-                        </span>
+                        <span className="text-main text-sm">{item.title}</span>
                         <span className="flex items-center text-xs gap-2">
                           <span>So luong:</span>
-                          <span className="text-main">
-                            {item.quantity}
-                          </span>
+                          <span className="text-main">{item.quantity}</span>
                         </span>
                       </span>
                     </span>

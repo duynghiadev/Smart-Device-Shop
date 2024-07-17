@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { CustomizeVarriants, InputForm, PagiItem, Pagination } from "components";
+import {
+  CustomizeVarriants,
+  InputForm,
+  PagiItem,
+  Pagination,
+} from "components";
 import { useForm } from "react-hook-form";
 import { apiGetProducts, apiDeleteProduct, apiAddVarriant } from "apis/product";
 import moment from "moment";

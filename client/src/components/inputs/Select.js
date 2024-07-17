@@ -16,7 +16,11 @@ const Select = ({
       {label && <label htmlFor={id}>{label}</label>}
       <select
         defaultValue={defaultValue}
-        className={clsx("form-select max-h-[52px] p-3 rounded-md", fullWidth && "w-full", style)}
+        className={clsx(
+          "form-select max-h-[52px] p-3 rounded-md",
+          fullWidth && "w-full",
+          style
+        )}
         id={id}
         {...register(id, validate)}
       >

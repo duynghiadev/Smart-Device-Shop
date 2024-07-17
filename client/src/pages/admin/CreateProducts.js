@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { InputForm, Select, Button, MarkdownEditor, Loading } from "components";
 import { useForm } from "react-hook-form";
-import { useSelector , useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { validate, getBase64 } from "ultils/helpers";
 import { toast } from "react-toastify";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { apiCreateProduct } from "apis";
-import {showModal} from 'store/app/appSlice'
+import { showModal } from "store/app/appSlice";
 
 const CreateProducts = () => {
   const { categories } = useSelector((state) => state.app);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -72,9 +72,9 @@ const CreateProducts = () => {
       if (finalPayload.images) {
         for (let image of finalPayload.images) formData.append("images", image);
       }
-      dispatch(showModal({isShowModal: true, modalChildren: <Loading />}))
+      dispatch(showModal({ isShowModal: true, modalChildren: <Loading /> }));
       const response = await apiCreateProduct(formData);
-      dispatch(showModal({isShowModal: false, modalChildren: null}))
+      dispatch(showModal({ isShowModal: false, modalChildren: null }));
       if (response.success) {
         toast.success(response.mes);
         reset();
@@ -214,7 +214,7 @@ const CreateProducts = () => {
           )}
           <div className="flex flex-col gap-2 mt-8">
             <label className="font-semibold" htmlFor="products">
-             Tải ảnh của sản phẩm
+              Tải ảnh của sản phẩm
             </label>
             <input
               type="file"

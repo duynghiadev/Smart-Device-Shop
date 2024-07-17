@@ -33,11 +33,11 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
 };
-const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
+const DetailProduct = ({ isQuickView, data, location, dispatch, navigate }) => {
   const [currentImage, setCurrentImage] = useState(null);
-  const titleRef = useRef()
-  const params= useParams();
-  const {current} = useSelector(state => state.user)
+  const titleRef = useRef();
+  const params = useParams();
+  const { current } = useSelector((state) => state.user);
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [relatedProducts, setRelatedProducts] = useState(null);
@@ -53,16 +53,15 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
     color: "",
   });
 
-  useEffect(()=>{
-    if(data) {
+  useEffect(() => {
+    if (data) {
       setPid(data.pid);
       setCategory(data.category);
-    }
-    else if (params && params.pid) {
+    } else if (params && params.pid) {
       setPid(params.pid);
       setCategory(params.category);
     }
-  },[data, params])
+  }, [data, params]);
   const fetchProductData = async () => {
     const response = await apiGetProduct(pid);
     if (response?.success) {
@@ -86,9 +85,9 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
         images: product?.images || [],
         price: product?.price,
         thumb: product?.thumb,
-      })
+      });
     }
-  },[varriant, product]);
+  }, [varriant, product]);
   const fetchProducts = async () => {
     const response = await apiGetProducts({ category });
     if (response?.success) setRelatedProducts(response?.products);
@@ -99,8 +98,7 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
       fetchProducts();
     }
     // window.scrollTo(0, 0);
-    titleRef.current?.scrollIntoView({block: 'center'})
-    
+    titleRef.current?.scrollIntoView({ block: "center" });
   }, [pid]);
 
   useEffect(() => {
@@ -133,38 +131,42 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
     e.stopPropagation();
     setCurrentImage(el);
   };
-  const handleAddToCart = async () =>{
-    if(!current) return Swal.fire({
-      title: 'Almost...',
-      text: 'Please login first',
-      icon: 'info',
-      cancelButtonText: 'Not now!',
-      showCancelButton: true,
-      confirmButtonText: 'Go login page'
-    }).then(async(rs) => {
-        if(rs.isConfirmed) navigate({
-          pathname: `/${path.LOGIN}`,
-          search: createSearchParams({redirect: location.pathname}).toString()
-        })
-    })
+  const handleAddToCart = async () => {
+    if (!current)
+      return Swal.fire({
+        title: "Almost...",
+        text: "Please login first",
+        icon: "info",
+        cancelButtonText: "Not now!",
+        showCancelButton: true,
+        confirmButtonText: "Go login page",
+      }).then(async (rs) => {
+        if (rs.isConfirmed)
+          navigate({
+            pathname: `/${path.LOGIN}`,
+            search: createSearchParams({
+              redirect: location.pathname,
+            }).toString(),
+          });
+      });
     const response = await apiUpdateCart({
-      pid , color: currentProduct.color|| product?.color,
-       quantity, 
-       price: currentProduct?.price || product?.price,
-       thumbnail: currentProduct?.thumb || product?.thumb,
-       title: currentProduct?.title || product?.title,
-       })
-    if(response.success) {
-      toast.success(response.mes)
-      dispatch(getCurrent())
-    }
-    else toast.error(response.mes)
-  }
+      pid,
+      color: currentProduct.color || product?.color,
+      quantity,
+      price: currentProduct?.price || product?.price,
+      thumbnail: currentProduct?.thumb || product?.thumb,
+      title: currentProduct?.title || product?.title,
+    });
+    if (response.success) {
+      toast.success(response.mes);
+      dispatch(getCurrent());
+    } else toast.error(response.mes);
+  };
   return (
-    <devicePixelRatio className={clsx('w-full')}>
+    <devicePixelRatio className={clsx("w-full")}>
       {!isQuickView && (
         <div className="h-[81px]  bg-gray-100 flex justify-center items-center">
-          <div  className="w-main">
+          <div className="w-main">
             <h3 ref={titleRef} className="font-semibold">
               {currentProduct?.title || product?.title}
             </h3>
@@ -175,8 +177,18 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
           </div>
         </div>
       )}
-      <div onClick={e => e.stopPropagation()} className={clsx("bg-white m-auto mt-4 flex", isQuickView ? 'max-w-[900px] gap-16 p-8 max-h-[80vh] overflow-y-auto rounded-md' : 'w-main')}>
-        <div className={clsx("flex flex-col gap-4 w-2/5", isQuickView && 'w-1/2')}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={clsx(
+          "bg-white m-auto mt-4 flex",
+          isQuickView
+            ? "max-w-[900px] gap-16 p-8 max-h-[80vh] overflow-y-auto rounded-md"
+            : "w-main"
+        )}
+      >
+        <div
+          className={clsx("flex flex-col gap-4 w-2/5", isQuickView && "w-1/2")}
+        >
           <div className="h-[458px] w-[458px] border flex items-center overflow-hidden">
             <ReactImageMagnify
               {...{
@@ -223,7 +235,12 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
           </div>
         </div>
 
-        <div className={clsx("w-2/5 pr-[24px] flex flex-col gap-4", isQuickView && 'w-1/2')}>
+        <div
+          className={clsx(
+            "w-2/5 pr-[24px] flex flex-col gap-4",
+            isQuickView && "w-1/2"
+          )}
+        >
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-[30px]">{`${formatMoney(
               formatPrice(currentProduct?.price || product?.price)
@@ -274,7 +291,7 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
               </div>
               {product?.varriant?.map((el) => (
                 <div
-                key={el.sku}
+                  key={el.sku}
                   onClick={() => setVarriant(el.sku)}
                   className={clsx(
                     "flex items-center gap-2 p-2 border cursor-pointer",
@@ -303,7 +320,9 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate}) => {
                 handleChangeQuantity={handleChangeQuantity}
               />
             </div>
-            <Button handleOnClick={handleAddToCart} fw>Thêm vào giỏ hàng</Button>
+            <Button handleOnClick={handleAddToCart} fw>
+              Thêm vào giỏ hàng
+            </Button>
           </div>
         </div>
 

@@ -30,13 +30,13 @@ const Products = () => {
   const [sort, setSort] = useState("");
   const { category } = useParams();
   const fetchProductsByCategory = async (queries) => {
-    if(category && category !== 'products') queries.category = category;
+    if (category && category !== "products") queries.category = category;
     const response = await apiGetProducts(queries);
     if (response?.success) setProducts(response);
   };
-  
+
   useEffect(() => {
-    const queries = Object.fromEntries([...params])
+    const queries = Object.fromEntries([...params]);
     let priceQuery = {};
     for (let i of params) queries[i[0]] = i[1];
     if (queries.to && queries.from) {

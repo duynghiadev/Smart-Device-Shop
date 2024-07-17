@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 
 import { NavLink } from "react-router-dom";
 import { createSlug } from "../../ultils/helpers";
@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { categories } = useSelector((state) => state.app);
-  
+
   return (
     <div className="flex flex-col border rounded-md">
       {categories?.map((el) => (

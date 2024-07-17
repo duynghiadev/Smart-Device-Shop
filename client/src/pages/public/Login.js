@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { InputField, Button , Loading } from "components";
+import { InputField, Button, Loading } from "components";
 import {
   apiRegister,
   apiLogin,
@@ -13,7 +13,7 @@ import { login } from "store/user/userSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { validate } from "ultils/helpers";
-import {showModal} from 'store/app/appSlice'
+import { showModal } from "store/app/appSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = () => {
   const [invalidFields, setInvalidFields] = useState([]);
   const [isRegister, setIsRegister] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const resetPayload = () => {
     setPayload({
       email: "",
@@ -58,15 +58,19 @@ const Login = () => {
       : validate(data, setInvalidFields);
     if (invalids === 0) {
       if (isRegister) {
-        dispatch(showModal({
-          isShowModal: true,
-          modalChildren: <Loading />
-        }))
+        dispatch(
+          showModal({
+            isShowModal: true,
+            modalChildren: <Loading />,
+          })
+        );
         const response = await apiRegister(payload);
-        dispatch(showModal({
-          isShowModal: false,
-          modalChildren: null
-        }))
+        dispatch(
+          showModal({
+            isShowModal: false,
+            modalChildren: null,
+          })
+        );
         if (response?.success) {
           setIsVerifiedEmail(true);
         } else Swal.fire("Oops!", response?.mes, "error");
@@ -80,7 +84,9 @@ const Login = () => {
               userData: rs.userData,
             })
           );
-         searchParams.get('redirect') ? navigate(searchParams.get('redirect')) : navigate(`/${path.HOME}`);
+          searchParams.get("redirect")
+            ? navigate(searchParams.get("redirect"))
+            : navigate(`/${path.HOME}`);
         } else Swal.fire("Oops!", rs?.mes, "error");
       }
     }
@@ -88,10 +94,12 @@ const Login = () => {
   const finalRegister = async () => {
     const response = await apiFinalRegister(token);
     if (response?.success) {
-      Swal.fire("Đăng kí tài khoản thành công", response?.mes, "success").then(() => {
-        setIsRegister(false);
-        resetPayload();
-      });
+      Swal.fire("Đăng kí tài khoản thành công", response?.mes, "success").then(
+        () => {
+          setIsRegister(false);
+          resetPayload();
+        }
+      );
     } else Swal.fire("Oops!", response?.mes, "error");
     setIsVerifiedEmail(false);
     setToken("");
@@ -102,8 +110,8 @@ const Login = () => {
         <div className="absolute top-0 right-0 left-0 bottom-0 bg-overlay z-50 flex justify-center items-center">
           <div className="bg-white w-[500px] rounded-md p-8">
             <h4 className="">
-              Chúng tôi đã gữi mã tới email của bạn. Vui lòng kiểm tra thư của bạn
-              và nhập mã:
+              Chúng tôi đã gữi mã tới email của bạn. Vui lòng kiểm tra thư của
+              bạn và nhập mã:
             </h4>
             <input
               type="text"
@@ -135,15 +143,14 @@ const Login = () => {
             />
             <div className="flex items-center justify-end  w-full gap-4">
               <Button
-                className ="text-white font-semibold"
+                className="text-white font-semibold"
                 name="Trở về"
                 handleOnClick={() => setIsForgotPassword(false)}
                 style="px-8 py-4 rounded-md text-white-100 bg-yellow-500 text-semibold my-2 font-semibold"
-                
               />
-              
+
               <Button
-                className ="px-8 py-4 rounded-md text-white-100 bg-blue-600 text-semibold my-2"
+                className="px-8 py-4 rounded-md text-white-100 bg-blue-600 text-semibold my-2"
                 name="Gửi"
                 handleOnClick={handleForgotPassword}
                 style="px-8 py-4 rounded-md text-black bg-blue-600 text-semibold my-2"
