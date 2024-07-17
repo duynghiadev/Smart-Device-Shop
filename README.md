@@ -131,10 +131,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or inquiries, please contact me at [your-email@example.com](mailto:your-email@example.com).
-"""
-
-# Saving the content to README.md file
-
-with open("/mnt/data/README.md", "w") as file:
-file.write(readme_content)
+For any questions or inquiries, please contact me at [duynghia22302@gmail.com](mailto:duynghia22302@gmail.com).
