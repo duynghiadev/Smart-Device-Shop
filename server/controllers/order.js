@@ -35,7 +35,7 @@ const updateStatus = asyncHandler(async (req, res) => {
 
 const getUserOrders = asyncHandler(async (req, res) => {
   const queries = { ...req.query };
-  const {_id} = req.user
+  const { _id } = req.user;
   // Tach cac truong dac biet ra khoi query
   const excludeFields = ["limit", "sort", "page", "fields"];
   excludeFields.forEach((el) => delete queries[el]);

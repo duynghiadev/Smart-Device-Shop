@@ -134,7 +134,8 @@ const getCurrent = asyncHandler(async (req, res) => {
         path: "product",
         select: "title thumb price",
       },
-    }).populate('wishlist', 'title thumb price color')
+    })
+    .populate("wishlist", "title thumb price color");
   return res.status(200).json({
     success: user ? true : false,
     rs: user ? user : "User not found",
