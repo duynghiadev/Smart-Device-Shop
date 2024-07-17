@@ -1,0 +1,8 @@
+###
+POST  http://localhost:9999/api/insert/
+
+###
+POST http://localhost:9999/api/insert/cate
+
+###
+POST http://localhost:9999/api/user/mock
