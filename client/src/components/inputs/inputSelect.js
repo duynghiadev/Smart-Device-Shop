@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 
 const InputSelect = ({ value, changeValue, options }) => {
   return (
@@ -16,4 +16,5 @@ const InputSelect = ({ value, changeValue, options }) => {
     </select>
   );
 };
+
 export default memo(InputSelect);

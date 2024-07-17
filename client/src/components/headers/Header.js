@@ -1,14 +1,15 @@
-import React, { Fragment, memo, useEffect, useState } from "react";
 import logo from "assets/logo.png";
-import icons from "../../ultils/icons";
-import { Link } from "react-router-dom";
-import path from "../../ultils/path";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "store/user/userSlice";
 import WithBaseComponent from "hocs/withBaseComponent";
+import { Fragment, memo, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { showCart } from "store/app/appSlice";
+import { logout } from "store/user/userSlice";
+import icons from "../../ultils/icons";
+import path from "../../ultils/path";
 
 const { RiPhoneFill, MdEmail, BsHandbagFill, FaUserCircle } = icons;
+
 const Header = ({ dispatch }) => {
   const { current } = useSelector((state) => state.user);
   const [isShowOption, setIsShowOption] = useState(false);
@@ -19,10 +20,12 @@ const Header = ({ dispatch }) => {
       if (!profile?.contains(e.target)) setIsShowOption(false);
     };
     document.addEventListener("click", handleClickoutOptions);
+
     return () => {
       document.removeEventListener("click", handleClickoutOptions);
     };
   }, []);
+
   return (
     <div className="w-main flex justify-between h-[110px] py-[35px]">
       <Link to={`/${path.HOME}`}>
@@ -33,7 +36,7 @@ const Header = ({ dispatch }) => {
         <div className="flex flex-col px-6 border-r items-center">
           <span className="flex gap-4 items-center">
             <RiPhoneFill color="red" size={25} />
-            <span className="font-semibold">0826257475</span>
+            <span className="font-semibold">0762980159</span>
           </span>
           <span>Mon-Sat 9:00 AM - 8:00 PM</span>
         </div>
@@ -41,7 +44,7 @@ const Header = ({ dispatch }) => {
         <div className="flex flex-col items-center px-6 border-r">
           <span className="flex gap-4 items-center">
             <MdEmail color="red" size={25} />
-            <span className="font-semibold">thangcbq78@gmail.com</span>
+            <span className="font-semibold">duynghia22302@gmail.com</span>
           </span>
           <span>Hỗ trợ online 24/7</span>
         </div>
@@ -97,4 +100,5 @@ const Header = ({ dispatch }) => {
     </div>
   );
 };
+
 export default WithBaseComponent(memo(Header));

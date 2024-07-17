@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import icons from "../../ultils/icons";
 
 const { MdEmail } = icons;
+
 const Footer = () => {
   return (
     <div className="w-full">
@@ -81,4 +82,5 @@ const Footer = () => {
     </div>
   );
 };
+
 export default memo(Footer);

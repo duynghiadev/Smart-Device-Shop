@@ -1,7 +1,7 @@
-import React, { useEffect, memo } from "react";
-import usePagination from "../../hooks/usePagination";
-import { PagiItem } from "..";
+import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { PagiItem } from "..";
+import usePagination from "../../hooks/usePagination";
 
 const Pagination = ({ totalCount }) => {
   const [params] = useSearchParams();
@@ -15,6 +15,7 @@ const Pagination = ({ totalCount }) => {
 
     return `${start} - ${end}`;
   };
+
   return (
     <div className="flex w-full justify-between items-center">
       {!+params.get("page") ? (
@@ -43,4 +44,5 @@ const Pagination = ({ totalCount }) => {
     </div>
   );
 };
+
 export default memo(Pagination);

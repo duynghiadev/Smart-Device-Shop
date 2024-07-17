@@ -11,4 +11,5 @@ const Banner = () => {
     </div>
   );
 };
+
 export default memo(Banner);

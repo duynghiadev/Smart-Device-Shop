@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import clsx from "clsx";
+
 const Select = ({
   label,
   options = [],
@@ -35,4 +36,5 @@ const Select = ({
     </div>
   );
 };
+
 export default memo(Select);

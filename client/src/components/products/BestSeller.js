@@ -1,9 +1,10 @@
-import React, { useEffect, useState, memo } from "react";
-import { apiGetProducts } from "../../apis/product";
-import { Product, CustomSlider } from "..";
-import { getNewProducts } from "../../store/products/asynsActions";
-import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
+import { memo, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CustomSlider } from "..";
+import { apiGetProducts } from "../../apis/product";
+import { getNewProducts } from "../../store/products/asynsActions";
+
 const tabs = [
   { id: 1, name: "mặt hàng bán chạy" },
   { id: 2, name: "sản phẩm mới nhất" },
@@ -14,24 +15,31 @@ const BestSeller = () => {
   const [bestSellers, setBestSellers] = useState(null);
   const [activedTab, setActivedTab] = useState(1);
   const [products, setProducts] = useState(null);
+
   const dispatch = useDispatch();
+
   const { newProducts } = useSelector((state) => state.products);
   const { isShowModal } = useSelector((state) => state.app);
+
   const fetchProducts = async () => {
     const response = await apiGetProducts({ sort: "-sold" });
+
     if (response?.success) {
       setBestSellers(response.products);
       setProducts(response.products);
     }
   };
+
   useEffect(() => {
     fetchProducts();
     dispatch(getNewProducts());
   }, []);
+
   useEffect(() => {
     if (activedTab === 1) setProducts(bestSellers);
     if (activedTab === 2) setProducts(newProducts);
   }, [activedTab]);
+
   return (
     <div className={clsx(isShowModal ? "hidden" : "")}>
       <div className="flex text-[20px] ml-[-32px]">
@@ -66,4 +74,5 @@ const BestSeller = () => {
     </div>
   );
 };
+
 export default memo(BestSeller);

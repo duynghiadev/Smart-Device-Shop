@@ -8,4 +8,5 @@ const Countdown = ({ unit, number }) => {
     </div>
   );
 };
+
 export default memo(Countdown);

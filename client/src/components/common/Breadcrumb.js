@@ -29,4 +29,5 @@ const Breadcrumb = ({ title, category }) => {
     </div>
   );
 };
+
 export default memo(Breadcrumb);

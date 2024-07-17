@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import clsx from "clsx";
+
 const InputField = ({
   value,
   setValue,
@@ -50,5 +51,6 @@ const InputField = ({
     </div>
   );
 };
+
 // [{name: password, mes: required}]
 export default memo(InputField);

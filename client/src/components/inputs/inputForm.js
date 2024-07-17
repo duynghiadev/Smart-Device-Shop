@@ -1,5 +1,6 @@
-import React, { memo } from "react";
 import clsx from "clsx";
+import { memo } from "react";
+
 const InputForm = ({
   label,
   disabled,

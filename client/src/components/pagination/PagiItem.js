@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import React, { memo } from "react";
+
 const PagiItem = ({ children }) => {
   const [params] = useSearchParams();
   const location = useLocation();
@@ -19,6 +20,7 @@ const PagiItem = ({ children }) => {
       search: createSearchParams(queries).toString(),
     });
   };
+
   return (
     <button
       className={clsx(
@@ -36,4 +38,5 @@ const PagiItem = ({ children }) => {
     </button>
   );
 };
+
 export default memo(PagiItem);

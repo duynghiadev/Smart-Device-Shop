@@ -21,6 +21,7 @@ const ButtonWrapper = ({
 }) => {
   const [{ isPending, options }, dispatch] = usePayPalScriptReducer();
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch({
       type: "resetOptions",
@@ -33,6 +34,7 @@ const ButtonWrapper = ({
 
   const handleSaveOrder = async () => {
     const response = await apiCreateOrder({ ...payload, status: "Succeed" });
+
     if (response.success) {
       setIsSuccess(true);
       setTimeout(() => {
@@ -44,9 +46,11 @@ const ButtonWrapper = ({
       }, 1500);
     }
   };
+
   return (
     <>
       {showSpinner && isPending && <div className="spinner" />}
+
       <PayPalButtons
         style={style}
         disabled={false}

@@ -24,4 +24,5 @@ const SelectQuantity = ({ quantity, handleQuantity, handleChangeQuantity }) => {
     </div>
   );
 };
+
 export default memo(SelectQuantity);

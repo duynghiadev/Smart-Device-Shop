@@ -21,4 +21,5 @@ const Navigation = () => {
     </div>
   );
 };
+
 export default memo(Navigation);

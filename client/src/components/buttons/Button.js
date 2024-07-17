@@ -29,4 +29,5 @@ const Button = ({
     </button>
   );
 };
+
 export default memo(Button);

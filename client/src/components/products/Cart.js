@@ -1,24 +1,26 @@
+import { apiRemoveCart } from "apis";
 import Button from "components/buttons/Button";
 import WithBaseComponent from "hocs/withBaseComponent";
-import React, { memo } from "react";
+import { memo } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { showCart } from "store/app/appSlice";
-import { formatMoney } from "ultils/helpers";
 import { ImBin } from "react-icons/im";
-import { apiRemoveCart } from "apis";
-import { getCurrent } from "store/user/asyncActions";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { showCart } from "store/app/appSlice";
+import { getCurrent } from "store/user/asyncActions";
+import { formatMoney } from "ultils/helpers";
 import path from "ultils/path";
 
 const Cart = ({ dispatch, navigate }) => {
   const { currentCart } = useSelector((state) => state.user);
+
   const removeCart = async (pid, color) => {
     const response = await apiRemoveCart(pid, color);
     if (response.success) {
       dispatch(getCurrent());
     } else toast.error(response.mes);
   };
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -94,4 +96,5 @@ const Cart = ({ dispatch, navigate }) => {
     </div>
   );
 };
+
 export default WithBaseComponent(memo(Cart));
